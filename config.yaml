@@ -1,0 +1,9 @@
+port: 8080
+host: 0.0.0.0 
+pre_allocated: "256 mb" 
+ttl: 2592000 # 60 * 60 * 24 * 30 = 30 days 
+json_logging: true
+# You can also specify the number of shards used
+# It has to be a power of 2 and will default to a 
+# number based on the number of available cores
+# num_shards: 64
