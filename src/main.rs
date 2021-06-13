@@ -203,14 +203,17 @@ mod test {
     #[tokio::test]
     async fn update() {
         let client = setup_server();
+        // insert data
         let response = client
             .set("some-key".into(), Bytes::from("Some value"))
             .await;
         assert_eq!(StatusCode::OK, response.status());
+        // update it
         let response = client
             .set("some-key".into(), Bytes::from("Some other value"))
             .await;
         assert_eq!(StatusCode::OK, response.status());
+        // Confirm update
         let response = client.get("some-key".into()).await;
         assert_eq!(StatusCode::OK, response.status());
         assert_eq!(

@@ -110,6 +110,7 @@ pub struct Storage {
 }
 
 const PTR_BITS: usize = std::mem::size_of::<usize>() * 8;
+const METADATA_BITS: usize = 7;
 
 impl Storage {
     /// Create a new storage with a given capacity, shard count and ttl. If no shard count is given
@@ -168,7 +169,7 @@ impl Storage {
         //
         // Each hash is then (right) shifted the calculated shift amount to make sure the hash is always fits within the
         // index range of the shards. Conceptually it's almost a cheap modolu operation of the hash.
-        (hash << 7) >> self.shift
+        (hash << METADATA_BITS) >> self.shift
     }
 
     /// Insert a key associated to a given value in to the storage. If already present the value will be overwritten and the ttl will be reset.
