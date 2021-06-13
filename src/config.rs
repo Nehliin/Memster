@@ -19,7 +19,8 @@ pub struct MemsterConfig {
     #[serde(skip)]
     pub pre_allocted_bytes: usize,
     pub json_logging: bool,
-    pub num_shards: Option<usize>, // This could be extented to contain a max allowed payload
+    pub num_shards: Option<usize>,
+    // This could be extented to contain a max allowed payload
 }
 
 impl Default for MemsterConfig {

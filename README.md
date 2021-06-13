@@ -13,7 +13,7 @@ Or
 `cargo run --release` 
 
 ## Design
-The cache is built with concurrency in mind and the memory is thus sharded to reduce lock contention. The tricky part of that is the key distribution among the different shards and the distribution used by Memster is based on the implementation of the Dashmap crate which is a popular concurrent Hashmap and also use sharding internally. However the Dashmap crate can't be used directly since it has no concept of TTL. So a custom implementation is used instead which makes each shard keep track of the TTL of the keys. 
+The cache is built with concurrency in mind and the memory is thus sharded to reduce lock contention. The tricky part of that is the key distribution among the different shards and the distribution used by Memster is based on the implementation of the Dashmap crate which is a popular concurrent Hashmap which also use sharding internally. However the Dashmap crate can't be used directly since it has no concept of TTL. So a custom implementation is used instead which makes each shard keep track of the TTL of the keys. 
 
 Much of the service can be configured via the `config.yaml`.
 
