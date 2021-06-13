@@ -1,0 +1,7 @@
+target/
+Dockerfile
+.vscode/
+.idea/
+.github/
+.git/
+.cargo/
