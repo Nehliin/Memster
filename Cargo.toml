@@ -14,23 +14,20 @@ panic = "abort"
 codegen-units = 1
 
 [dependencies]
-tokio = {version = "1.5", features = ["full"]}
+tokio = {version = "1.6", features = ["rt-multi-thread", "macros", "parking_lot", "net", "time", "io-std"]}
 parking_lot = "0.11"
 bytes = "1"
 tracing = "0.1"
 tracing-subscriber = {version = "0.2", features = ["parking_lot"]}
-#TODO full is not needed here 
-hyper = {version = "0.14", features = ["full"]}
+hyper = {version = "0.14", features = ["http1", "http2", "server", "stream"]}
 warp = "0.3"
-tower-http = { version = "0.1", features = ["full"]}
-tower = {version =  "0.4.5", features = ["full"]}
-url = "0.2"
+tower-http = { version = "0.1", features = ["sensitive-headers", "set-header", "trace", "compression", "add-extension"]}
+tower = {version =  "0.4", features = ["full"]}
 anyhow = "1"
 num_cpus = "1"
 # No need for encrpyted allocations imo
 mimalloc = {version = "0.1", default-features = false}
 config = "0.11"
-#chrono = {version = "0.4", default-features = false, features = ["serde"]}
 parse-size = "1"
 serde = "1"
 serde-aux = "2.1"

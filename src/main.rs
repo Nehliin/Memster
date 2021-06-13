@@ -1,4 +1,7 @@
-use crate::config::{setup_tracing, MemsterConfig};
+use crate::{
+    config::{setup_tracing, MemsterConfig},
+    storage::Storage,
+};
 use anyhow::Result;
 use bytes::Bytes;
 use hyper::{
@@ -20,16 +23,11 @@ use tower_http::{
 use tracing::info;
 use warp::{filters, hyper::Server, Filter};
 
-use crate::storage::Storage;
-
 mod config;
 mod storage;
 
 #[global_allocator]
 static ALLOCATOR: mimalloc::MiMalloc = mimalloc::MiMalloc;
-// TODOS :
-// comment
-// clean up cargo toml
 
 fn get_handler(key: Key, storage: Arc<Storage>) -> Response<Body> {
     if let Some(value) = storage.get(&key) {
